@@ -1,6 +1,6 @@
 import baseTest from "../jupitorToys/baseTest.ts";
 
-class deliveryDetails{
+class deliveryDetailsTab extends baseTest{
 
     async enterDeliveryDetails(){
         await this.selectRadioButton()
@@ -8,13 +8,13 @@ class deliveryDetails{
         
         }
     async selectRadioButton(){
-        await baseTest.clickRadioButton()
+        await this.clickRadioButton()
     }
     async nextButton(){
-        await baseTest.jsClick("Next")
+        await this.clickNextButton()
         
     }
 
-    }
+}
 
-export default new deliveryDetails()
+export default new deliveryDetailsTab()

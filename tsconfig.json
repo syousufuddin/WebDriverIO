@@ -26,6 +26,7 @@
     },
     "include": [
         "test",
+        "specs",
         "wdio.conf.ts"
     ]
 }

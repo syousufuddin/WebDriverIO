@@ -30,8 +30,8 @@ export const config: Options.Testrunner = {
     // of the config file unless it's absolute.
     //
     specs: [
-        //'./test/specs/**/*.ts'
-        './test/jupitorToys/**/*.ts'
+        // ToDo: define location for spec files here
+        './test/specs/**/*.ts'
     ],
     // Patterns to exclude.
     exclude: [
@@ -62,8 +62,13 @@ export const config: Options.Testrunner = {
     capabilities: [{
         browserName: 'chrome',
         acceptInsecureCerts: true,
-        
-        
+        'goog:chromeOptions': {
+        args: ['start-maximized', 
+               '--ignore-certificate-errors', 
+               '--ignore-ssl-errors=yes', 
+               '--disable-notifications'
+              ]
+        },
     }],
 
     //
@@ -97,12 +102,10 @@ export const config: Options.Testrunner = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    // baseUrl: 'http://localhost:8080',
+    baseUrl: 'https://ec2-54-206-101-9.ap-southeast-2.compute.amazonaws.com:5200/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
-    
-       
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -115,8 +118,8 @@ export const config: Options.Testrunner = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: [],
-    //
+    services: ['visual'],
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -166,13 +169,12 @@ export const config: Options.Testrunner = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-     //onPrepare: function (config, capabilities) {
-     //},
-     before(capabilities, specs, browser) {
-         browser.url("https://ec2-54-206-101-9.ap-southeast-2.compute.amazonaws.com:5200/home"),
-         browser.maximizeWindow()
-         
-     },
+    // onPrepare: function (config, capabilities) {
+    // },
+    before(capabilities, specs, browser) {
+        browser.url("https://ec2-54-206-101-9.ap-southeast-2.compute.amazonaws.com:5200/home")
+    },
+
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
