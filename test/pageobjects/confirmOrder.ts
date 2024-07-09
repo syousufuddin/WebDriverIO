@@ -42,6 +42,7 @@ class confirmOrder extends baseTest{
         const sectionContainer = await this.sectionContainer("Order Details");
         console.log("cart items list => "+await sectionContainer.$$(".//table/tbody//tr").length);
         return await sectionContainer.$$(".//table/tbody//tr").length;
+        console.log("test")
     }
 
     public async getDName() : Promise<string> {
